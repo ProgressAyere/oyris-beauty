@@ -283,7 +283,12 @@ All pages are fully responsive with mobile-first design approach.
    - Go to [vercel.com](https://vercel.com)
    - Click "Add New Project"
    - Import your GitHub repository
-   - Vercel will auto-detect Next.js and the frontend folder
+   - **IMPORTANT**: In "Configure Project" settings:
+     - Set **Root Directory** to `frontend`
+     - Click "Edit" next to Root Directory
+     - Select `frontend` from the dropdown
+     - Click "Continue"
+   - Framework Preset: Next.js (auto-detected)
    - Click "Deploy"
 
 3. **Custom Domain** (Optional)
@@ -291,33 +296,18 @@ All pages are fully responsive with mobile-first design approach.
    - Update DNS records as instructed
    - SSL is automatically configured
 
-#### Vercel Configuration
+#### Important Vercel Settings
 
-The project includes a `vercel.json` file in the `frontend/` folder with the following configuration:
+**Root Directory Configuration:**
+- ⚠️ **You MUST set the Root Directory to `frontend`**
+- This tells Vercel where your Next.js app is located
+- Without this, the build will fail
 
-```json
-{
-  "version": 2,
-  "builds": [
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/next"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "frontend/$1"
-    }
-  ]
-}
-```
-
-Vercel will automatically:
-- Detect the Next.js framework
-- Install dependencies with `npm install`
-- Build the project with `npm run build`
-- Deploy to a production-ready environment
+**Build Settings (Auto-detected):**
+- Framework: Next.js
+- Build Command: `npm run build`
+- Output Directory: `.next`
+- Install Command: `npm install`
 
 ---
 
