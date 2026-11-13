@@ -46,7 +46,7 @@ git push -u origin main
    - Select your `oyris-beauty` repository
 4. **Configure Project**:
    - **Framework Preset**: Next.js
-   - **Root Directory**: `frontend` (IMPORTANT!)
+   - **Root Directory**: Leave as default (auto-detected)
    - **Build Command**: `npm run build` (default)
    - **Output Directory**: `.next` (default)
    - **Install Command**: `npm install` (default)
@@ -84,10 +84,30 @@ vercel --prod
 
 ## 🔧 Important Vercel Settings
 
-When deploying, make sure:
+When deploying, Vercel will automatically detect your Next.js project in the root directory (frontend folder is automatically detected).
 
-1. **Root Directory**: Set to `frontend`
-2. **Framework**: Next.js (auto-detected)
+**The `vercel.json` file is located in the `frontend/` folder and contains:**
+```json
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "frontend/$1"
+    }
+  ]
+}
+```
+
+**Vercel Settings:**
+1. **Framework**: Next.js (auto-detected)
+2. **Root Directory**: Leave as default (Vercel detects frontend automatically)
 3. **Node Version**: 18.x or higher (Vercel handles this)
 4. **Build Settings**:
    - Build Command: `npm run build`
