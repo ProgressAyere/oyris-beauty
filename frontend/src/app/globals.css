@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.site-shell {
+  min-height: calc(100vh - 5rem);
+  background: #ffffff;
+}
+
+.site-header {
+  position: sticky;
+  z-index: 50;
+  min-height: 5rem;
+  background: #ffffff;
+  transition: background-color 200ms ease-out, border-color 200ms ease-out;
+}
+
+.site-header--scrolled {
+  background: transparent;
+  border-color: transparent;
+  backdrop-filter: blur(0);
+}
+
+.home-stage {
+  min-height: calc(100vh - 5rem);
+  background: #ffffff;
+}
+
+/* ---------------------------------------------------------------------
+   Logo intro (see components/LogoIntro.js)
+   While it plays, only the logo shows above the intro screen.
+   --------------------------------------------------------------------- */
+.site-header[data-intro="active"] {
+  background: transparent;
+  border-color: transparent;
+}
+
+.site-header[data-intro="active"] [data-header-ui] {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.site-header[data-intro="active"] [data-logo] {
+  visibility: hidden;
+}
+
+.site-header [data-logo]:focus-visible {
+  outline: 2px solid #000000;
+  outline-offset: 0.5rem;
+}
+
+/* ---------------------------------------------------------------------
+   Page transition (see components/PageTransition.js)
+   --pt-stage: the colour behind the page "card" while it swings
+   --pt-card:  the colour the card turns into while the page is swapped
+   --------------------------------------------------------------------- */
+:root {
+  --pt-stage: #ff66c4;
+  --pt-card: #fff5fb;
+}
+
+.pt-stage {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  visibility: hidden;
+  background: var(--pt-stage);
+}
+
+.pt-shell {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+.pt-content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+.pt-card {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  z-index: 60;
+  opacity: 0;
+  pointer-events: none;
+  background: var(--pt-card);
+}
+
+/* keep the header solid while a page transition runs */
+html[data-pt-active] .site-header {
+  background: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header {
+    transition: none;
+  }
+
+}
