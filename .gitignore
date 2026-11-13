@@ -43,3 +43,10 @@ next-env.d.ts
 
 # OS
 Thumbs.db
+
+# Local documentation (not pushed to GitHub)
+DEPLOYMENT.md
+frontend/AGENTS.md
+frontend/brand.md
+AGENTS.md
+brand.md

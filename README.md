@@ -139,8 +139,7 @@ oyris-beauty/
 │   └── convert-video.js      # Video conversion script
 ├── backend/                   # (Empty - for future use)
 ├── .gitignore                # Root gitignore
-├── README.md                 # This file
-└── DEPLOYMENT.md             # Deployment guide
+└── README.md                 # This file
 ```
 
 ---
@@ -284,7 +283,7 @@ All pages are fully responsive with mobile-first design approach.
    - Go to [vercel.com](https://vercel.com)
    - Click "Add New Project"
    - Import your GitHub repository
-   - **Root Directory**: Leave as default (Vercel will detect `frontend` automatically)
+   - Vercel will auto-detect Next.js and the frontend folder
    - Click "Deploy"
 
 3. **Custom Domain** (Optional)
@@ -292,7 +291,33 @@ All pages are fully responsive with mobile-first design approach.
    - Update DNS records as instructed
    - SSL is automatically configured
 
-For detailed deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md)
+#### Vercel Configuration
+
+The project includes a `vercel.json` file in the `frontend/` folder with the following configuration:
+
+```json
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "frontend/$1"
+    }
+  ]
+}
+```
+
+Vercel will automatically:
+- Detect the Next.js framework
+- Install dependencies with `npm install`
+- Build the project with `npm run build`
+- Deploy to a production-ready environment
 
 ---
 
@@ -384,4 +409,4 @@ For technical issues or questions:
 
 ---
 
-**Built with ❤️ for Oyris Beauty**
+**Built by Progress Ayere with ❤️ for Oyris Beauty**
